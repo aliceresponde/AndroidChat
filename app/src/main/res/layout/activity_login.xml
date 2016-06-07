@@ -1,19 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login"
+    android:id="@+id/layout_main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.alice.androidchat.LoginActivity">
+    android:gravity="center_horizontal"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    tools:context="com.example.alice.androidchat.LoginActivity"
+    >
 
-    <TextView
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/wraperEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/inputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login.message.email"
+            android:inputType="textEmailAddress"
+            android:layout_above="@+id/inputPassword"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/wraperPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wraperEmail"
+        >
+
+        <EditText
+            android:id="@+id/inputPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login.message.password"
+            android:inputType="textPassword"
+            android:layout_above="@+id/layoutButtons"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="24dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layoutButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_login"
-        app:layout_constraintLeft_toLeftOf="@+id/activity_login"
-        app:layout_constraintRight_toRightOf="@+id/activity_login"
-        app:layout_constraintTop_toTopOf="@+id/activity_login" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/btnSingIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login.button.signup" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login.button.signin" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:progressBarStyleLarge"
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/layoutButtons"
+        />
+
+
+
+
+
+</RelativeLayout>
