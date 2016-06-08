@@ -43,8 +43,10 @@ dependencies {
 
 //   FireBase
     compile 'com.firebase:firebase-client-android:2.5.0+'
+//    compile 'org.webjars.bower:firebase:2.4.1'
 
 //    Butterknife
-    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.jakewharton:butterknife:8.0.1'
+//    compile 'com.jakewharton:butterknife:7.0.1'
 
 }
