@@ -26,17 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
-//    @BindView(R.id.inputEmail)
-//    EditText inputEmail;
-//    @BindView(R.id.inputPassword)
-//    EditText inputPassword;
-//    @BindView(R.id.btnSingIn)
-//    Button btnSingIn;
-//    @BindView(R.id.btnLogin)
-//    Button btnLogin;
-//    @BindView(R.id.progressBar)
-//    ProgressBar progressBar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
