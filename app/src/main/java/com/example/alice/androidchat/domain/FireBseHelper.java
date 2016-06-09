@@ -1,4 +1,4 @@
-package com.example.alice.androidchat;
+package com.example.alice.androidchat.domain;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
@@ -8,7 +8,6 @@ import com.firebase.client.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by alice on 6/8/16.
