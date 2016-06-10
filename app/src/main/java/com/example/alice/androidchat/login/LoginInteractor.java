@@ -7,6 +7,6 @@ package com.example.alice.androidchat.login;
 
 public interface LoginInteractor {
     void checkSesion();
-    void doSignIn();
-    void doSignUp();
+    void doSignIn(String email, String password);
+    void doSignUp(String email, String password);
 }
