@@ -16,7 +16,7 @@ public interface LoginView {
 
     //sesion exitosa
     void  navigateToMainScreen();
-    void  loginError();
+    void  loginError( String error);
 
     //registro
     void  newUserSuccess();

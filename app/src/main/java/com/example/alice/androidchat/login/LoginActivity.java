@@ -1,14 +1,19 @@
 package com.example.alice.androidchat.login;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.example.alice.androidchat.R;
+import com.example.alice.androidchat.contactlist.ContactsListActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +34,8 @@ public class LoginActivity extends AppCompatActivity implements  LoginView {
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
 
+    @BindView(R.id.layout_main_container)
+    RelativeLayout mainContainer;
 
     private LoginPresenter loginPresenter;
 
@@ -97,22 +104,26 @@ public class LoginActivity extends AppCompatActivity implements  LoginView {
 
     @Override
     public void navigateToMainScreen() {
-
+        startActivity( new Intent(this , ContactsListActivity.class));
     }
 
     @Override
-    public void loginError() {
-
+    public void loginError(String error) {
+        inputPassword.setText("");
+        String messageError  = String.format(getString(R.string.login_error_signin , error));
+        inputPassword.setError(messageError);
     }
 
     @Override
     public void newUserSuccess() {
-
+        Snackbar.make(mainContainer , getString(R.string.login_notice_signin), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void newUserError(String error) {
-
+        inputPassword.setText("");
+        String messageError  = String.format(getString(R.string.login_error_signup , error));
+        inputPassword.setError(messageError);
     }
 
     private void setInputs( boolean enabled){

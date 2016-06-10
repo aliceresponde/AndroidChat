@@ -4,4 +4,8 @@
     <string name="login.message.password">Contraseña</string>
     <string name="login.button.signup">Crear cuenta</string>
     <string name="login.button.signin">Iniciar sesion</string>
+    <string name="login.error.signin">Imposible Iniciar sesion %s</string>
+    <string name="login.error.signup">Imposible registrar usuario %s</string>
+    <string name="login.notice.signin">Usuario agregado existosamente</string>
+
 </resources>
