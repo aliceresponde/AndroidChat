@@ -57,13 +57,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnSingIn"
+            android:id="@+id/btnSingUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login.button.signup" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login.button.signin" />

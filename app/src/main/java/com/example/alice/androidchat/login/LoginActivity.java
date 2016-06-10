@@ -14,7 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements  LoginView {
 
 
     public static final String TAG = LoginActivity.class.getSimpleName();
@@ -22,12 +22,15 @@ public class LoginActivity extends AppCompatActivity {
     EditText inputEmail;
     @BindView(R.id.inputPassword)
     EditText inputPassword;
-    @BindView(R.id.btnSingIn)
+    @BindView(R.id.btnSingUp)
     Button btnSingIn;
-    @BindView(R.id.btnLogin)
+    @BindView(R.id.btnSignIn)
     Button btnLogin;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
+
+
+    private LoginPresenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +40,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.btnSingIn, R.id.btnLogin})
+    @OnClick({R.id.btnSingUp, R.id.btnSignIn})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btnSingIn:
+            case R.id.btnSingUp:
                 handleSingInClick();
                 break;
-            case R.id.btnLogin:
+            case R.id.btnSignIn:
                 handleLoginClick();
                 break;
         }
@@ -55,5 +58,67 @@ public class LoginActivity extends AppCompatActivity {
 
     private void handleSingInClick() {
         Log.i(TAG, "handleSingInClick " + inputEmail.getText().toString());
+    }
+
+    @Override
+    public void enableInputs() {
+        setInputs(true);
+    }
+
+    @Override
+    public void disableInputs() {
+       setInputs(false);
+    }
+
+    @Override
+    public void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @OnClick(R.id.btnSingUp)
+    @Override
+    public void handleSignUp() {
+        loginPresenter.registerNewUser(inputEmail.getText().toString(),
+                                       inputPassword.getText().toString());
+
+    }
+
+    @OnClick(R.id.btnSignIn)
+    @Override
+    public void handleSignIn() {
+        loginPresenter.validateLogin(inputEmail.getText().toString(),
+                                     inputPassword.getText().toString());
+    }
+
+    @Override
+    public void navigateToMainScreen() {
+
+    }
+
+    @Override
+    public void loginError() {
+
+    }
+
+    @Override
+    public void newUserSuccess() {
+
+    }
+
+    @Override
+    public void newUserError(String error) {
+
+    }
+
+    private void setInputs( boolean enabled){
+        inputEmail.setEnabled(enabled);
+        inputPassword.setEnabled(enabled);
+        btnLogin.setEnabled(enabled);
+        btnSingIn.setEnabled(enabled);
     }
 }
