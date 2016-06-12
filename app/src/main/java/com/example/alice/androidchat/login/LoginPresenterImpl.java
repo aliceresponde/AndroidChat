@@ -1,5 +1,7 @@
 package com.example.alice.androidchat.login;
 
+import android.util.Log;
+
 /**
  * Created by alice on 6/9/16.
  * It  has the LoginView interface
@@ -9,11 +11,13 @@ package com.example.alice.androidchat.login;
 
 public class LoginPresenterImpl implements  LoginPresenter {
 
-    LoginView loginView;
-    LoginInteractor loginInteractor;
+    private LoginView loginView;
+    private LoginInteractor loginInteractor;
+    private final String TAG = LoginPresenterImpl.class.getSimpleName();
 
     public LoginPresenterImpl(LoginView loginView) {
         this.loginView = loginView;
+        loginInteractor = new LoginInteractorImpl();
     }
 
     /**
@@ -26,6 +30,8 @@ public class LoginPresenterImpl implements  LoginPresenter {
 
     @Override
     public void checkForAuthenticatedUser() {
+        Log.e(TAG, "checkForAuthenticatedUser" );
+
         if (loginView != null ){
             loginView.disableInputs();
             loginView.showProgressBar();
