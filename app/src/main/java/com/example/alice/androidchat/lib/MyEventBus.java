@@ -5,19 +5,14 @@ package com.example.alice.androidchat.lib;
  * Interface asociated  to  Eventbus
  */
 
-public interface EventBus {
+public interface MyEventBus {
 
     //Register to Buss  by  object
-    void registerToEventBusBy(Object subscriber);
+    void register(Object subscriber);
 
     //Unregister
-    void unregisterToEventBusBy(Object subscriber);
+    void unregister(Object subscriber);
 
     //Publicar evento en el bus
-    void postInEventBus( Object event);
-
-
-
-
-
+    void post(Object event);
 }

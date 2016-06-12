@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,9 +46,20 @@ public class LoginActivity extends AppCompatActivity implements  LoginView {
 
         //el presenter recibe la vista (this)
         loginPresenter = new LoginPresenterImpl(this);
+        //llamo onCreate para suscribir al presenter al bus de eventos
+        loginPresenter.onCreate();
+
         loginPresenter.checkForAuthenticatedUser();
     }
 
+    /**
+     * desregistro el presentador al Bus de  eventos
+     */
+    @Override
+    protected void onDestroy() {
+        loginPresenter.onDestroy();
+        super.onDestroy();
+    }
 
     @OnClick({R.id.btnSingUp, R.id.btnSignIn})
     public void onClick(View view) {
@@ -120,7 +130,8 @@ public class LoginActivity extends AppCompatActivity implements  LoginView {
 
     @Override
     public void newUserSuccess() {
-        Snackbar.make(mainContainer , getString(R.string.login_notice_signin), Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(mainContainer , getString(R.string.login_notice_signin), Snackbar.LENGTH_SHORT)
+                .show();
     }
 
     @Override

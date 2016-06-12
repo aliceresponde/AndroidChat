@@ -15,7 +15,7 @@ public class LoginInteractorImpl implements LoginInteractor {
      * Constuctor that initialize LoginRepositoty with the implementer
      */
     public LoginInteractorImpl() {
-        this.loginRepository = new LoginRepositoryImpl();
+        loginRepository = new LoginRepositoryImpl();
     }
 
     @Override

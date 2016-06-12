@@ -1,10 +1,11 @@
 package com.example.alice.androidchat.login;
 
-import android.bluetooth.le.ScanRecord;
 import android.util.Log;
 
 import com.example.alice.androidchat.domain.FireBseHelper;
-import com.firebase.client.Firebase;
+import com.example.alice.androidchat.lib.GreenRobotsEventBus;
+import com.example.alice.androidchat.lib.MyEventBus;
+import com.example.alice.androidchat.login.events.LoginEvent;
 
 /**
  * Created by alice on 6/11/16.
@@ -12,8 +13,8 @@ import com.firebase.client.Firebase;
  */
 
 public class LoginRepositoryImpl implements LoginRepository {
-    FireBseHelper fireBseHelper;
-    private static final String TAG = LoginRepository.class.getSimpleName();
+    private FireBseHelper fireBseHelper;
+    private static final String TAG = LoginRepositoryImpl.class.getSimpleName();
 
     public LoginRepositoryImpl() {
         FireBseHelper.getInstance();
@@ -21,16 +22,37 @@ public class LoginRepositoryImpl implements LoginRepository {
 
     @Override
     public void signUp(String email, String password) {
-        Log.e(TAG, "signUp" );
+        Log.e(TAG, "signUp");
+        postEvent(LoginEvent.onSignUpSuccess);
     }
 
     @Override
     public void signIn(String email, String password) {
-        Log.e(TAG, "signIn" );
+        Log.e(TAG, "signIn");
+        postEvent(LoginEvent.onSignInSuccess);
     }
 
     @Override
     public void checkSession() {
-        Log.e(TAG, "checkSession" );
+        Log.e(TAG, "checkSession");
+        postEvent(LoginEvent.onFailedToRecoverySession);
     }
+
+    private void postEvent(int eventType, String errorMessage) {
+        //Creo nuevo  evento de login
+        LoginEvent loginEvent = new LoginEvent();
+        loginEvent.setEventType(eventType);
+        if (errorMessage != null) {
+            loginEvent.setEventErrorMessage(errorMessage);
+        }
+
+        MyEventBus myEventBus = GreenRobotsEventBus.getInstance();
+        myEventBus.post(myEventBus);
+    }
+
+    private void postEvent(int eventType) {
+        Log.e(TAG, "postEvent ---> " + eventType );
+        postEvent(eventType, null);
+    }
+
 }
